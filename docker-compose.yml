@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+
+  app:
+    container_name: app-golang-temperature
+    build:
+      dockerfile: docker/Dockerfile
+      context: .
+    ports:
+      - 8081:8081
+    volumes:
+      - .:/go/src/
