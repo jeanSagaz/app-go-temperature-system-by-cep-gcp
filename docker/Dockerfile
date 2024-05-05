@@ -16,7 +16,7 @@ WORKDIR /root
 
 COPY --from=build /app/cloudrun ./
 
-# EXPOSE 8081
+# EXPOSE 8080
 
 ENTRYPOINT [ "./cloudrun" ]
 # CMD [ "./cloudrun" ]
