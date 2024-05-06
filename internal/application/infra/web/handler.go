@@ -42,6 +42,12 @@ func getZipCode(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if len(responseViaCep.Localidade) == 0 {
+		w.WriteHeader(http.StatusUnprocessableEntity)
+		http.Error(w, "invalid zipcode", http.StatusUnprocessableEntity)
+		return
+	}
+
 	responseWeather, err := services.GetWeatherApiService(responseViaCep.Localidade)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
