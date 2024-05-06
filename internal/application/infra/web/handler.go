@@ -42,9 +42,9 @@ func getZipCode(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if len(responseViaCep.Localidade) == 0 {
-		w.WriteHeader(http.StatusUnprocessableEntity)
-		http.Error(w, "invalid zipcode", http.StatusUnprocessableEntity)
+	if responseViaCep.Erro {
+		w.WriteHeader(http.StatusNotFound)
+		http.Error(w, "can not find zipcode", http.StatusNotFound)
 		return
 	}
 
